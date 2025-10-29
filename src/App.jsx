@@ -1,21 +1,15 @@
 import './App.css'
 import Header from "./components/Header"
 import Footer from "./components/Footer"
-import Person from "./components/Person"
+import employeeData from "./assets/employeeData.json"
+import PersonList from './components/PersonList'
 
 const App = () => {
 
   return (
     <>
       <Header />
-      <Person 
-        name="Juha Konttinen" 
-        title="Lecturer"
-        salary="10 €"
-        phone="040 730 6004"
-        email="juha.konttinen@bc.fi"
-        pet="dog"
-      />
+      <PersonList employees={employeeData} />
       <Footer />
     </>
   )
