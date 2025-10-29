@@ -1,10 +1,16 @@
 import './App.css'
+import Header from "./components/Header"
+import Footer from "./components/Footer"
+import employeeData from "./assets/employeeData.json"
+import PersonList from './components/PersonList'
 
-function App() {
+const App = () => {
 
   return (
     <>
-      <p>App komponentti</p>
+      <Header />
+      <PersonList employees={employeeData} />
+      <Footer />
     </>
   )
 }
