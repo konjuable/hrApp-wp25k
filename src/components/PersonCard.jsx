@@ -1,4 +1,4 @@
-import Skill from "./Skill";
+// import Skill from "./Skill";
 
 const Person = (props) => {
   let startingTime = props.startDate;
@@ -17,42 +17,49 @@ const Person = (props) => {
     if (props % 5 === 0 && props != 0) {
       return (
         <>
-          <p>Recognition: 🎉 Schedule recognition meeting.</p>
+          <dd>Recognition: 🎉 Schedule recognition meeting.</dd>
         </>
       );
     }
   };
+  const skills = props.skills;
+  console.log(skills);
 
   const Probation = (props) => {
     if (props < 0.5) {
       return (
         <>
-          <p>Probation: 🔔 Schedule probation review.</p>
+          <dd>Probation: 🔔 Schedule probation review.</dd>
         </>
       );
     }
   };
 
-  
-
   return (
     <>
-      <p>Name: {props.name}</p>
-      <p>Title: {props.title}</p>
-      <p>Salary: {props.salary}</p>
-      <p>Phone: {props.phone}</p>
-      <p>Email: {props.email}</p>
-      <p>Pet: {props.animal}</p>
-      <p>Start Date: {props.startDate}</p>
-      <p>Service Years: {getAge(startingTime)}</p>
-      {Recognition(serviceYears)}
-      {Probation(serviceYears)}
-      <p></p>
-      <p>Location: {props.location}</p>
-      <p>Department: {props.department}</p>
-      {/* <p>Skills: {props.skills}</p> */}
-      <Skill skills={props.skills} />
-      <hr />
+      <dl className="employee">
+        <dt>Name: {props.name}</dt>
+        <dd>Title: {props.title}</dd>
+        <dd>Salary: {props.salary}</dd>
+        <dd>Phone: {props.phone}</dd>
+        <dd>Email: {props.email}</dd>
+        <dd>Pet: {props.animal}</dd>
+        <dd>Start Date: {props.startDate}</dd>
+        <dd>Service Years: {getAge(startingTime)}</dd>
+        {Recognition(serviceYears)}
+        {Probation(serviceYears)}
+        <dd>Location: {props.location}</dd>
+        <dd>Department: {props.department}</dd>
+        <dd>Skills: {props.skills}</dd>
+        {/* <dd>Skills: {skills.map((skill) => (
+        <span key={skill}>{skill} </span>
+      ))}
+      </dd>   */}
+
+        {/* <Skill skills={props.skills} /> */}
+
+      </dl>
+
     </>
   );
 };
