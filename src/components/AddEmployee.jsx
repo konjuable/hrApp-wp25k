@@ -147,7 +147,7 @@ const AddEmployee = ({ formData, setFormData, handleClick }) => {
             className={styles.input}
             id="skills"
             name="skills"
-            type="array"
+            type="text"
             autoComplete="skills"
             value={formData.skills}
             onChange={handleChange}

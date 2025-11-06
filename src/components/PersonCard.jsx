@@ -50,7 +50,7 @@ const Person = (props) => {
         {Probation(serviceYears)}
         <dd>Location: {props.location}</dd>
         <dd>Department: {props.department}</dd>
-        <dd>Skills: {props.skills}</dd>
+        <dd>Skills: {props.skills.join(", ")}</dd>
         {/* <dd>Skills: {skills.map((skill) => (
         <span key={skill}>{skill} </span>
       ))}
