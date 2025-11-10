@@ -5,7 +5,8 @@ const PersonList = ({employees}) => {
     console.log(employees)
     return (
         <>
-            <section className={styles.employeeList}>
+                <h2 className="heading">Personnel</h2>
+                <section className={styles.employeeList}>
                 {employees.map(empleyee =>
                     <PersonCard 
                         key={empleyee.id}
