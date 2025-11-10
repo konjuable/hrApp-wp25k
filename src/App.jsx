@@ -1,15 +1,15 @@
-import './App.css'
-import { useState } from 'react'
+import "./App.css";
+import { useState } from "react";
 
-import Header from "./components/Header"
-import Footer from "./components/Footer"
-import employeeData from "./assets/employeeData.json"
-import PersonList from "./components/PersonList"
-import AddEmployee from "./components/AddEmployee"
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import employeeData from "./assets/employeeData.json";
+// import PersonList from "./components/PersonList";
+// import AddEmployee from "./components/AddEmployee";
+// import About from "./components/About";
 
 function App() {
-
-  const [employees, setEmployees] = useState(employeeData)
+  const [employees, setEmployees] = useState(employeeData);
   const [formData, setFormData] = useState({
     name: "",
     title: "",
@@ -41,20 +41,25 @@ function App() {
         skills: formData.skills.split(", ").map((skill) => skill.trim()),
       },
     ]);
-  }
+  };
 
   return (
     <>
-      <Header />
-      <PersonList employees={employees} />
-      <AddEmployee 
+      <Header 
         formData={formData}
         setFormData={setFormData}
         handleClick={handleClick}
+        employees={employees} 
       />
+      {/* <PersonList employees={employees} />
+      <AddEmployee
+        formData={formData}
+        setFormData={setFormData}
+        handleClick={handleClick}
+      /> */}
       <Footer />
     </>
-  )
+  );
 }
 
-export default App
+export default App;

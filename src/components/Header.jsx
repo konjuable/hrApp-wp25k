@@ -1,22 +1,62 @@
-import AddEmployee from "./AddEmployee"
+import {
+    BrowserRouter as Router,
+    Routes, Route, Link
+} from "react-router-dom"
 
-const Header = () => {
+import AddEmployee from "./AddEmployee"
+import PersonList from "./PersonList"
+import About from "./About"
+
+
+const Header = (
+    { formData, setFormData, handleClick, employees }) => {
+    
     return (
         <>
-            <h1>hrApp</h1>
-            {/* <nav>
-                <ul>
-                    <li>
-                        <a href="#">Home</a>
-                    </li>
-                    <li>
-                        <a href="#">Add Person</a>
-                    </li>
-                    <li>
-                        <a href="#">About</a>
-                    </li>
-                </ul>
-            </nav> */}
+            <header>
+                <h1>HR Management</h1>
+                <Router>
+                    <nav className="navbar">
+                            <Link className={"link-styles"} to="/">Home</Link>
+                            <Link className={"link-styles"} to="/addperson">Add Person</Link>
+                            <Link className={"link-styles"} to="/about">About</Link>
+                    </nav>
+                        <Routes>
+                <Route
+                path="/addperson"
+                element={
+                    <AddEmployee
+                    formData={formData}
+                    setFormData={setFormData}
+                    handleClick={handleClick}
+                    />
+                }
+                />
+                <Route 
+                path="/about" 
+                element={<About />} 
+                />
+                <Route 
+                path="/" 
+                element={<PersonList employees={employees} />} 
+                />
+            </Routes>
+
+                </Router>
+                {/* <nav>
+                    <ul>
+                        <li>
+                            <a href="#">Home</a>
+                        </li>
+                        <li>
+                            <a href="#">Add Person</a>
+                        </li>
+                        <li>
+                            <a href="#">About</a>
+                        </li>
+                    </ul>
+                </nav> */}
+            </header>
         </>
     )
 }
