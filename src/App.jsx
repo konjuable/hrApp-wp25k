@@ -3,13 +3,13 @@ import { useState } from "react";
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import employeeData from "./assets/employeeData.json";
+import employeeData from "./assets/db.json";
 // import PersonList from "./components/PersonList";
 // import AddEmployee from "./components/AddEmployee";
 // import About from "./components/About";
 
 function App() {
-  const [employees, setEmployees] = useState(employeeData);
+  const [employees, setEmployees] = useState(employeeData.employees);
   const [formData, setFormData] = useState({
     name: "",
     title: "",
