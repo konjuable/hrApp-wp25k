@@ -1,15 +1,13 @@
 import "./App.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios"
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import employeeData from "./assets/db.json";
-// import PersonList from "./components/PersonList";
-// import AddEmployee from "./components/AddEmployee";
-// import About from "./components/About";
+// import employeeData from "../db.json";
 
 function App() {
-  const [employees, setEmployees] = useState(employeeData.employees);
+  const [employees, setEmployees] = useState([]);
   const [formData, setFormData] = useState({
     name: "",
     title: "",
@@ -20,8 +18,33 @@ function App() {
     startDate: "",
     location: "",
     department: "",
-    skills: "",
+    skills: [],
   });
+
+  const hook = () => {
+    console.log("effect")
+    axios
+      .get("http://localhost:3001/employees")
+      .then(response => {
+        console.log("promise fullfilled")
+        setEmployees(response.data)
+      })
+  }
+
+  useEffect(hook, [])
+  console.log("render", employees.length, "employees")
+
+
+  useEffect(() => {
+    console.log("effect")
+    axios
+      .get("http://localhost:3001/employees")
+      .then(response => {
+        console.log("promise fullfilled")
+        setEmployees(response.data)
+      })
+  }, [])
+  console.log("render", employees.length, "employees")
 
   const handleClick = () => {
     setEmployees([
@@ -38,7 +61,7 @@ function App() {
         location: formData.location,
         department: formData.department,
         // skills: formData.skills,
-        skills: formData.skills.split(", ").map((skill) => skill.trim()),
+        skills: [formData.skills.split(", ").map((skill) => skill.trim())],
       },
     ]);
   };
@@ -50,6 +73,7 @@ function App() {
         setFormData={setFormData}
         handleClick={handleClick}
         employees={employees} 
+        setEmployees={setEmployees}
       />
       {/* <PersonList employees={employees} />
       <AddEmployee

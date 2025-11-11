@@ -9,7 +9,7 @@ import About from "./About"
 
 
 const Header = (
-    { formData, setFormData, handleClick, employees }) => {
+    { formData, setFormData, handleClick, employees, setEmployees }) => {
     
     return (
         <>
@@ -26,9 +26,11 @@ const Header = (
                 path="/addperson"
                 element={
                     <AddEmployee
-                    formData={formData}
-                    setFormData={setFormData}
-                    handleClick={handleClick}
+                        formData={formData}
+                        setFormData={setFormData}
+                        handleClick={handleClick}
+                        setEmployees={setEmployees}
+                        employees={employees}
                     />
                 }
                 />

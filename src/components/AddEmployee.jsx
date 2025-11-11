@@ -1,6 +1,7 @@
+import axios from "axios";
 import styles from "./AddEmployee.module.css";
 
-const AddEmployee = ({ formData, setFormData, handleClick }) => {
+const AddEmployee = ({ formData, setFormData, handleClick, employees, setEmployees }) => {
   console.log(formData);
 
   const handleChange = (e) => {
@@ -11,6 +12,11 @@ const AddEmployee = ({ formData, setFormData, handleClick }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    axios
+      .post("http://localhost:3001/employees", formData)
+      .then(response => {
+        setEmployees(employees.concat(response.data))
+      })
     handleClick();
     setFormData({
       name: "",
@@ -22,8 +28,8 @@ const AddEmployee = ({ formData, setFormData, handleClick }) => {
       startDate: "",
       location: "",
       department: "",
-      skills: "",
-    }); // optimal resetting og the form
+      skills: [],
+    }); // optimal resetting of the form
   };
 
   return (
@@ -147,9 +153,9 @@ const AddEmployee = ({ formData, setFormData, handleClick }) => {
             className={styles.input}
             id="skills"
             name="skills"
-            type="text"
+            type="array"
             autoComplete="skills"
-            value={formData.skills}
+            value={[formData.skills]}
             onChange={handleChange}
           />
 
@@ -167,7 +173,7 @@ const AddEmployee = ({ formData, setFormData, handleClick }) => {
                 startDate: "",
                 location: "",
                 department: "",
-                skills: "",
+                skills: [],
               });
             }}
           >

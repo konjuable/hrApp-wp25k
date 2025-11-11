@@ -5,7 +5,7 @@ const PersonList = ({employees}) => {
     console.log(employees)
     return (
         <>
-                <h2 className="heading">Personnel</h2>
+                <h2 className="heading">Personnel list</h2>
                 <section className={styles.employeeList}>
                 {employees.map(empleyee =>
                     <PersonCard 
