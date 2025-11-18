@@ -4,7 +4,7 @@
       "id": "1",
       "name": "Emma Virtanen",
       "title": "Senior Developer",
-      "salary": 75000,
+      "salary": "75000",
       "phone": "+358 40 1234567",
       "email": "emma.virtanen@company.fi",
       "animal": " 🐈 Cat",
