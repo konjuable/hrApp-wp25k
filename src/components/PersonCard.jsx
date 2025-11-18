@@ -1,4 +1,7 @@
 // import Skill from "./Skill";
+import EditForm from "./EditForm";
+import { useState } from "react";
+import axios from "axios"
 
 const Person = (props) => {
   console.log(props.skills)
@@ -36,30 +39,101 @@ const Person = (props) => {
     }
   };
 
+  const name = props.name
+  const salary = props.salary
+  const location = props.location
+  const department = props.department
+  const id = props.id
+
+  // kenttien arvojen muokkaaminen
+
+  const [isEditing, setIsEditing] = useState(false)
+  const [person, setPerson] = useState({ salary, location, department, skills })
+
+  
+const update = (url = "http://localhost:3001", body = {}, headers = {}) =>
+  axios.patch(url, body, { headers })
+
+    const handleInputChange = (e) => {
+      const { name, value } = e.target;
+      setPerson((prevState) => ({ ...prevState, [name]: value }));
+    };  
+
+    const handleEdit = () => {
+      update(`http://localhost:3001/employees/${id}`, person);
+    };
+  
+    const renderEditableField = (value, name) => {
+      const capitalizeWords = (text) =>
+        text
+          .toString()
+          .replace(
+            /\w\S*/g,
+            (word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+          );
+  
+      const displayValue = value ? capitalizeWords(value) : "N/A";
+  
+      return isEditing ? (
+        <input value={value || ""} name={name} onChange={handleInputChange} />
+      ) : (
+        <dd>{displayValue}</dd>
+      );
+    };
+  
+
+  // const editForm = (props) => {
+    // const [Individual, SetIndevidual] = useState({
+    //   name: {name},
+    //   salary: {salary},
+    //   department: {department},
+    //   location: {location},
+    //   skills: {skills}
+    // })
+    // console.log(props.name, props.salary, props.location, props.department, props.skills)
+
+  //   return (
+  //     <>
+  //       <EditForm name={props.name}  />
+  //     </>
+  //   )
+  // }
+
   return (
     <>
       <dl className="employee">
         <dt>Name: {props.name}</dt>
+        {Recognition(serviceYears)}
+        {Probation(serviceYears)}
         <dd>Title: {props.title}</dd>
-        <dd>Salary: {props.salary}</dd>
         <dd>Phone: {props.phone}</dd>
         <dd>Email: {props.email}</dd>
         <dd>Pet: {props.animal}</dd>
         <dd>Start Date: {props.startDate}</dd>
         <dd>Service Years: {getAge(startingTime)}</dd>
-        {Recognition(serviceYears)}
-        {Probation(serviceYears)}
+        {/* <dd>Salary: {props.salary}</dd>
         <dd>Location: {props.location}</dd>
         <dd>Department: {props.department}</dd>
-        <dd>Skills: {props.skills}</dd>
+        <dd>Skills: {props.skills}</dd> */}
+        {renderEditableField(person.salary, "salary")}
+        {renderEditableField(person.location, "location")}
+        {renderEditableField(person.department, "department")}
+        {renderEditableField(person.skills, "skills")}
+
+
         {/* <dd>Skills: {props.skills.join(", ")}</dd> */}
         {/* <dd>Skills: {skills.map((skill) => (
         <span key={skill}>{skill} </span>
       ))}
       </dd>   */}
-
         {/* <Skill skills={props.skills} /> */}
-
+        <button
+          onClick={() => {
+            if (isEditing) handleEdit()
+            setIsEditing((prev) => !prev)
+          }}>
+          {isEditing ? "Save" : "Edit"}
+          </button> 
       </dl>
 
     </>
