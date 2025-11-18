@@ -82,23 +82,6 @@ const update = (url = "http://localhost:3001", body = {}, headers = {}) =>
     };
   
 
-  // const editForm = (props) => {
-    // const [Individual, SetIndevidual] = useState({
-    //   name: {name},
-    //   salary: {salary},
-    //   department: {department},
-    //   location: {location},
-    //   skills: {skills}
-    // })
-    // console.log(props.name, props.salary, props.location, props.department, props.skills)
-
-  //   return (
-  //     <>
-  //       <EditForm name={props.name}  />
-  //     </>
-  //   )
-  // }
-
   return (
     <>
       <dl className="employee">
