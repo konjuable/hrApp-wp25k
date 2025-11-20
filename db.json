@@ -4,19 +4,14 @@
       "id": "1",
       "name": "Emma Virtanen",
       "title": "Senior Developer",
-      "salary": "75000",
+      "salary": "76000",
       "phone": "+358 40 1234567",
       "email": "emma.virtanen@company.fi",
       "animal": " 🐈 Cat",
       "startDate": "2020-03-15",
-      "location": "Helsinki",
+      "location": "Kuopio",
       "department": "Engineering",
-      "skills": [
-        "JavaScript",
-        "React",
-        "Node.js",
-        "Python"
-      ]
+      "skills": "JavaScript, React, Node.js, Python"
     },
     {
       "id": "2",

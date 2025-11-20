@@ -26,7 +26,7 @@ const Person = (props) => {
       );
     }
   };
-  const skills = props.skills;
+  const skills =  props.skills.join(", ")
   console.log(skills);
 
   const Probation = (props) => {
@@ -73,11 +73,12 @@ const update = (url = "http://localhost:3001", body = {}, headers = {}) =>
           );
   
       const displayValue = value ? capitalizeWords(value) : "N/A";
+      const displayName = name ? capitalizeWords(name) : "N/A";
   
       return isEditing ? (
         <input value={value || ""} name={name} onChange={handleInputChange} />
       ) : (
-        <dd>{displayValue}</dd>
+        <dd>{displayName}: {displayValue}</dd>
       );
     };
   
