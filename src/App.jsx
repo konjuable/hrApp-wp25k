@@ -1,6 +1,7 @@
 import "./App.css";
 import { useState, useEffect } from "react";
 import axios from "axios"
+import { _get } from "./hooks/useAxios";
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -21,30 +22,50 @@ function App() {
     skills: [],
   });
 
-  const hook = () => {
-    console.log("effect")
-    axios
-      .get("http://localhost:3001/employees")
-      .then(response => {
-        console.log("promise fullfilled")
-        setEmployees(response.data)
-      })
-  }
+  // const hook = () => {
+  //   console.log("effect")
+  //   axios
+  //     .get("http://localhost:3001/employees")
+  //     .then(response => {
+  //       console.log("promise fullfilled")
+  //       setEmployees(response.data)
+  //     })
+  // }
 
-  useEffect(hook, [])
-  console.log("render", employees.length, "employees")
+  // useEffect(hook, [])
+  // console.log("render", employees.length, "employees")  
+  
+  // START useAxios.js
 
+  // const [data, setData] = useState([])
 
   useEffect(() => {
-    console.log("effect")
-    axios
-      .get("http://localhost:3001/employees")
-      .then(response => {
-        console.log("promise fullfilled")
-        setEmployees(response.data)
-      })
+    fetchData()
   }, [])
+
+  const fetchData = async () => {
+    try {
+      const response = await _get("/employees", { headers: {} })
+      setEmployees(response.data)
+    } catch(error) {
+      console.log("Error fetching data:", error)
+    }
+  }
+
   console.log("render", employees.length, "employees")
+
+  // END useAxios.js
+
+  // useEffect(() => {
+  //   console.log("effect")
+  //   axios
+  //     .get("http://localhost:3001/employees")
+  //     .then(response => {
+  //       console.log("promise fullfilled")
+  //       setEmployees(response.data)
+  //     })
+  // }, [])
+  // console.log("render", employees.length, "employees")
 
   const handleClick = () => {
     setEmployees([
@@ -60,8 +81,8 @@ function App() {
         startDate: formData.startDate,
         location: formData.location,
         department: formData.department,
-        // skills: formData.skills,
-        skills: [formData.skills.split(", ").map((skill) => skill.trim())],
+        skills: formData.skills,
+        // skills: [formData.skills.split(", ").map((skill) => skill.trim())],
       },
     ]);
   };

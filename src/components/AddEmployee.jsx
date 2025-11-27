@@ -1,5 +1,7 @@
 import axios from "axios";
 import styles from "./AddEmployee.module.css";
+import { _post } from "../hooks/useAxios";
+import { useEffect, useState } from "react";
 
 const AddEmployee = ({ formData, setFormData, handleClick, employees, setEmployees }) => {
   console.log(formData);
@@ -12,11 +14,21 @@ const AddEmployee = ({ formData, setFormData, handleClick, employees, setEmploye
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios
-      .post("http://localhost:3001/employees", formData)
+    try {
+      _post("/employees", formData)
       .then(response => {
         setEmployees(employees.concat(response.data))
       })
+    } catch(error) {
+      console.log("Error adding data:", error)
+    }
+
+    // axios
+    //   .post("http://localhost:3001/employees", formData)
+    //   .then(response => {
+    //     setEmployees(employees.concat(response.data))
+    //   })
+
     handleClick();
     setFormData({
       name: "",

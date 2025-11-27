@@ -2,6 +2,7 @@
 import EditForm from "./EditForm";
 import { useState } from "react";
 import axios from "axios"
+import { _patch } from "../hooks/useAxios";
 
 const Person = (props) => {
   console.log(props.skills)
@@ -26,8 +27,8 @@ const Person = (props) => {
       );
     }
   };
-  const skills =  props.skills.join(", ")
-  console.log(skills);
+  // const skills =  props.skills.join(", ")
+  // console.log(skills);
 
   const Probation = (props) => {
     if (props < 0.5) {
@@ -39,10 +40,11 @@ const Person = (props) => {
     }
   };
 
-  const name = props.name
+  // kenttien arvojen muokkaaminen
   const salary = props.salary
   const location = props.location
   const department = props.department
+  const skills = props.skills
   const id = props.id
 
   // kenttien arvojen muokkaaminen
@@ -52,7 +54,7 @@ const Person = (props) => {
 
   
 const update = (url = "http://localhost:3001", body = {}, headers = {}) =>
-  axios.patch(url, body, { headers })
+  _patch(url, body, { headers })
 
     const handleInputChange = (e) => {
       const { name, value } = e.target;
